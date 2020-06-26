@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="./search-field.js" type="module"></script>
+    <link rel='stylesheet' href="./search-field.css"/>
+  </head>
+  <body>
+
+    <div id="search-field">
+      <input
+	data-bind="textInput: searchText, event: { keyup: onKeyup }"
+	type="search"
+	value=""
+	required
+	/>
+      <!-- ko if: options().length !== 0 || placeholder()-->
+      <ul>
+      	<!-- ko if: placeholder() -->
+      	<span data-bind="text: placeholder"></span>
+      	<!-- /ko -->
+      	<!-- ko foreach: options -->
+      	<li data-bind="text: $data.text, click: function(d, e) { $parent.selectOption(d,e); }, clickBubble: false"></li>
+      	<!-- /ko -->
+      </ul>
+      <!-- /ko -->
+    </div>
+
+  </body>
+</html>
+
+
