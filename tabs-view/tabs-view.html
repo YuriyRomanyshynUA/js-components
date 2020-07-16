@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js"></script>
+    <script src="./tabs-view.js" type="module"></script>
+    <link rel='stylesheet' href="./tabs-view.css"/>
+  </head>
+  <body>
+
+    <!-- ko component: {
+	 name: "tabs-view",
+	 params: {
+	    tabsDesc: [
+	       {component: 'a-component', title: 'Component A'},
+	       {component: 'b-component', title: 'Component B'}
+	    ]
+	 }
+     } -->
+    <!-- /ko -->
+
+    <template id="tabs-view-template">
+      <div id="root">
+	<div id="navigation">
+	  <ul>
+	    <!-- ko foreach: tabs -->
+	    <li data-bind="click: $data.show, attr: { 'data-state': Object.is($parent.current(), $data) ? 'active' : '' }">
+	      <a data-bind="text: $data.title"></a>
+	    </li>
+	    <!-- /ko -->
+	  </ul>
+	</div>
+	<div id="content" data-bind="component: current().componentName">
+	  
+	</div>
+      </div>
+    </template>
+
+
+    <template id="a-view">
+      <h2>Component a</h2>
+    </template>
+
+    <template id="b-view">
+      <h2>Component b</h2>
+    </template>
+
+  </body>
+</html>
